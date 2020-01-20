@@ -80,15 +80,15 @@ filtered = data[
     (data[DATE_TIME].dt.hour >= hour) & (data[DATE_TIME].dt.hour < (hour + 1))
 ]
 hist = np.histogram(filtered[DATE_TIME].dt.minute, bins=60, range=(0, 60))[0]
-chart_data = pd.DataFrame({"minute": range(60), "commandes": hist})
+chart_data = pd.DataFrame({"minute": range(60), "pickups": hist})
 
 st.altair_chart(alt.Chart(chart_data)
     .mark_area(
         interpolate='step-after',
     ).encode(
         x=alt.X("minute:Q", scale=alt.Scale(nice=False)),
-        y=alt.Y("commandes:Q"),
-        tooltip=['minute', 'commandes']
+        y=alt.Y("pickups:Q"),
+        tooltip=['minute', 'pickups']
     ), use_container_width=True)
 
 if st.checkbox("Voir les données brutes", False):
