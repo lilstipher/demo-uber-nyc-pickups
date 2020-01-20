@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""An example of showing geographic data."""
+"""Un exemple de visualisation de données géographiques."""
 
 import streamlit as st
 import pandas as pd
@@ -26,14 +26,13 @@ DATA_URL = (
     "http://s3-us-west-2.amazonaws.com/streamlit-demo-data/uber-raw-data-sep14.csv.gz"
 )
 
-st.title("Uber Pickups in New York City")
+st.title("Commandes des Uber (et autres véhicules de location) dans la ville de New York")
 st.markdown(
 """
-This is a demo of a Streamlit app that shows the Uber pickups
-geographical distribution in New York City. Use the slider
-to pick a specific hour and look at how the charts change.
+Il s'agit une démo d'une application Streamlit qui montre la répartition géographique des commandes Uber à New York. Utilisez le curseur
+pour choisir une heure précise afin de visulaiser les données pour ce moment précis de la journée.
 
-[See source code](https://github.com/streamlit/demo-uber-nyc-pickups/blob/master/app.py)
+[Lien vers le code source ](https://github.com/streamlit/demo-uber-nyc-pickups/blob/master/app.py)
 """)
 
 @st.cache(persist=True)
@@ -47,11 +46,11 @@ def load_data(nrows):
 
 data = load_data(100000)
 
-hour = st.slider("Hour to look at", 0, 23)
+hour = st.slider("Heure de la journée", 0, 23)
 
 data = data[data[DATE_TIME].dt.hour == hour]
 
-st.subheader("Geo data between %i:00 and %i:00" % (hour, (hour + 1) % 24))
+st.subheader("Données géographiques entre %i:00 et %i:00" % (hour, (hour + 1) % 24))
 midpoint = (np.average(data["lat"]), np.average(data["lon"]))
 
 st.write(pdk.Deck(
@@ -76,7 +75,7 @@ st.write(pdk.Deck(
     ],
 ))
 
-st.subheader("Breakdown by minute between %i:00 and %i:00" % (hour, (hour + 1) % 24))
+st.subheader("Répartition par minute entre  %i:00 et %i:00" % (hour, (hour + 1) % 24))
 filtered = data[
     (data[DATE_TIME].dt.hour >= hour) & (data[DATE_TIME].dt.hour < (hour + 1))
 ]
@@ -89,9 +88,9 @@ st.altair_chart(alt.Chart(chart_data)
     ).encode(
         x=alt.X("minute:Q", scale=alt.Scale(nice=False)),
         y=alt.Y("pickups:Q"),
-        tooltip=['minute', 'pickups']
+        tooltip=['minute', 'commandes']
     ), use_container_width=True)
 
-if st.checkbox("Show raw data", False):
-    st.subheader("Raw data by minute between %i:00 and %i:00" % (hour, (hour + 1) % 24))
+if st.checkbox("Voir les données brutes", False):
+    st.subheader("Données brutes par minute entre %i:00 et %i:00" % (hour, (hour + 1) % 24))
     st.write(data)
