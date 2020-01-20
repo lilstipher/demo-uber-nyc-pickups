@@ -29,7 +29,7 @@ DATA_URL = (
 st.title("Commandes des Uber (et autres véhicules de location) dans la ville de New York")
 st.markdown(
 """
-Il s'agit une démo d'une application Streamlit qui montre la répartition géographique des commandes Uber à New York. Utilisez le curseur
+Il s'agit d'une demo d'une application Streamlit qui montre la répartition géographique des commandes Uber à New York. Utilisez le curseur
 pour choisir une heure précise afin de visulaiser les données pour ce moment précis de la journée.
 
 [Lien vers le code source ](https://github.com/streamlit/demo-uber-nyc-pickups/blob/master/app.py)
