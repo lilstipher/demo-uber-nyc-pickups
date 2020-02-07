@@ -4,7 +4,7 @@ A [Streamlit](https://streamlit.io) demo [written in pure Python](https://github
 ## How to run this demo (french version)
 ```
 pip install --upgrade streamlit 
-streamlit run https://raw.githubusercontent.com/lilstipher/demo-uber-nyc-pickups/master/app.py
+streamlit run https://raw.githubusercontent.com/lilstipher/demo-uber-nyc-pickups/master/appML.py
 ```
 
 ### Questions? Comments?
